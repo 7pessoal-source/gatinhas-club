@@ -1,0 +1,114 @@
+# Gatinhas Club - Apache Configuration
+# Otimizações de performance, segurança e SEO
+
+# ========================================
+# GZIP COMPRESSION
+# ========================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# ========================================
+# CACHE HEADERS
+# ========================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # Cache para assets (1 ano)
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/otf "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  
+  # Cache para HTML (1 hora)
+  ExpiresByType text/html "access plus 1 hour"
+  
+  # Default (1 dia)
+  ExpiresDefault "access plus 1 day"
+</IfModule>
+
+# ========================================
+# SECURITY HEADERS
+# ========================================
+<IfModule mod_headers.c>
+  # Prevenir clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+  
+  # Prevenir MIME type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+  
+  # XSS Protection
+  Header always set X-XSS-Protection "1; mode=block"
+  
+  # Referrer Policy
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  
+  # Permissions Policy
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  
+  # Cache Control
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|css|js|svg|woff|woff2|ttf|otf)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "public, max-age=3600, s-maxage=3600"
+  </FilesMatch>
+</IfModule>
+
+# ========================================
+# REWRITE RULES (SPA)
+# ========================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # Redirecionar http para https
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  
+  # Remover www
+  RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+  
+  # Rewrite para SPA
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [QSA,L]
+</IfModule>
+
+# ========================================
+# PREVENT HOTLINKING
+# ========================================
+<IfModule mod_rewrite.c>
+  RewriteCond %{HTTP_REFERER} !^$
+  RewriteCond %{HTTP_REFERER} !^https?://(www\.)?gatinhasclub\.com\.br [NC]
+  RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [F,NC]
+</IfModule>
+
+# ========================================
+# DISABLE DIRECTORY LISTING
+# ========================================
+Options -Indexes
+
+# ========================================
+# REMOVE SERVER SIGNATURE
+# ========================================
+ServerSignature Off

@@ -56,10 +56,12 @@ const Index = () => {
   return (
     <Layout>
       <SEOHead
-        title="Acompanhantes em Macapá AP – Classificados Adultos"
+        title="Acompanhantes em Macapá AP – Classificados Adultos | Gatinhas Club"
         description="Gatinhas Club – Plataforma de acompanhantes, garotas de programa e massagistas independentes em Macapá, AP. Perfis verificados, fotos reais, contato direto. Apenas para maiores de 18 anos."
         canonical="/"
+        keywords="acompanhantes macapá, garotas de programa macapá, massagem macapá, acompanhantes ap, classificados adultos"
         schema={homeSchema}
+        ogImageAlt="Gatinhas Club - Acompanhantes independentes em Macapá, AP"
       />
 
       {/* Hero */}
@@ -70,7 +72,7 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             className="font-display text-4xl font-bold text-primary-foreground sm:text-5xl lg:text-6xl"
           >
-            Gatinhas Club
+            Acompanhantes em Macapá – AP
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -78,8 +80,8 @@ const Index = () => {
             transition={{ delay: 0.15 }}
             className="mx-auto mt-4 max-w-xl text-sm text-primary-foreground/70 sm:text-base"
           >
-            Acompanhantes e garotas de programa em Macapá – AP.{" "}
-            Classificados adultos independentes, seguros e discretos.
+            Encontre as melhores acompanhantes, garotas de programa e massagistas independentes em Macapá – AP.{" "}
+            Classificados adultos verificados, seguros e discretos. Contato direto via WhatsApp.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

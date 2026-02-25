@@ -17,4 +17,37 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Otimizações de performance
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: true,
+      },
+    },
+    rollupOptions: {
+      output: {
+        // Code splitting para melhor cache
+        manualChunks: {
+          vendor: ["react", "react-dom", "react-router-dom"],
+          ui: ["@radix-ui/react-dialog", "@radix-ui/react-tabs", "@radix-ui/react-select"],
+          animation: ["framer-motion"],
+        },
+      },
+    },
+    // Compressão gzip
+    reportCompressedSize: true,
+  },
+  // Otimizações de desenvolvimento
+  optimizeDeps: {
+    include: [
+      "react",
+      "react-dom",
+      "react-router-dom",
+      "framer-motion",
+      "lucide-react",
+      "zod",
+      "@hookform/resolvers",
+    ],
+  },
 }));

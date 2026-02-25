@@ -20,6 +20,7 @@ const ProfileCard = ({ profile, index }: ProfileCardProps) => {
       <Link
         to={`/perfil/${profile.id}`}
         className="group block overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-card-hover"
+        title={`Ver perfil de ${profile.nome} – ${profile.categoria} em ${profile.bairro}, Macapá`}
       >
         {/* Foto */}
         <div className="relative aspect-[3/4] overflow-hidden bg-secondary">
@@ -29,6 +30,7 @@ const ProfileCard = ({ profile, index }: ProfileCardProps) => {
               alt={`${profile.nome} – ${profile.categoria} em ${profile.bairro}, Macapá`}
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
+              decoding="async"
             />
           ) : (
             <div className="flex h-full items-center justify-center gradient-hero">
@@ -67,7 +69,7 @@ const ProfileCard = ({ profile, index }: ProfileCardProps) => {
 
         {/* Info */}
         <div className="p-3">
-          <h3 className="font-display text-base font-semibold text-foreground">
+          <h3 className="font-display text-base font-semibold text-foreground" itemProp="name">
             {profile.nome}, {profile.idade}
           </h3>
           <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
