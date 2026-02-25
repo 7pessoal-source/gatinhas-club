@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { MapPin, BadgeCheck, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import OptimizedImage from "./OptimizedImage";
 import type { Profile } from "@/data/mockProfiles";
 
 interface ProfileCardProps {
@@ -20,17 +21,16 @@ const ProfileCard = ({ profile, index }: ProfileCardProps) => {
       <Link
         to={`/perfil/${profile.id}`}
         className="group block overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-card-hover"
-        title={`Ver perfil de ${profile.nome} – ${profile.categoria} em ${profile.bairro}, Macapá`}
+        title={`Ver perfil de ${profile.nome} - ${profile.categoria} em ${profile.bairro}, Macapa`}
       >
         {/* Foto */}
         <div className="relative aspect-[3/4] overflow-hidden bg-secondary">
           {foto ? (
-            <img
+            <OptimizedImage
               src={foto}
-              alt={`${profile.nome} – ${profile.categoria} em ${profile.bairro}, Macapá`}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-              decoding="async"
+              alt={`${profile.nome} - Acompanhante em ${profile.bairro}, Macapa-AP`}
+              className="h-full w-full transition-transform duration-500 group-hover:scale-105"
+              objectFit="cover"
             />
           ) : (
             <div className="flex h-full items-center justify-center gradient-hero">
@@ -74,7 +74,7 @@ const ProfileCard = ({ profile, index }: ProfileCardProps) => {
           </h3>
           <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
             <MapPin size={12} />
-            {profile.bairro}, Macapá
+            {profile.bairro}, Macapa
           </p>
         </div>
       </Link>

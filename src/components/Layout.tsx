@@ -28,6 +28,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     { to: "/massagem-macapa", label: "Massagem Macapá" },
   ];
 
+  // Links de Silagem Local por Bairros
+  const bairrosLinks = [
+    { to: "/acompanhantes/centro-macapa", label: "Centro" },
+    { to: "/acompanhantes/santa-rita-macapa", label: "Santa Rita" },
+    { to: "/acompanhantes/buritizal-macapa", label: "Buritizal" },
+    { to: "/acompanhantes/trem-macapa", label: "Trem" },
+    { to: "/acompanhantes/marco-zero-macapa", label: "Marco Zero" },
+    { to: "/acompanhantes/jardim-equatorial-macapa", label: "Jardim Equatorial" },
+    { to: "/acompanhantes/congos-macapa", label: "Congós" },
+    { to: "/acompanhantes/novo-horizonte-macapa", label: "Novo Horizonte" },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -181,14 +193,33 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </div>
             </div>
             <div>
-              <h4 className="mb-3 text-sm font-semibold text-foreground">Regiões de Macapá</h4>
+              <h4 className="mb-3 text-sm font-semibold text-foreground">Bairros de Macapá</h4>
               <div className="flex flex-col gap-2">
-                {seoLinks.slice(2).map((l) => (
+                {bairrosLinks.slice(0, 5).map((l) => (
                   <Link key={l.to} to={l.to} className="text-xs text-muted-foreground hover:text-primary transition-colors">
                     {l.label}
                   </Link>
                 ))}
               </div>
+            </div>
+          </div>
+
+          {/* Interlinking Local - Silagem de Bairros */}
+          <div className="mt-8 rounded-xl border border-border bg-card p-4">
+            <h4 className="mb-3 text-sm font-semibold text-foreground">
+              Encontre Acompanhantes em Todos os Bairros de Macapá
+            </h4>
+            <div className="flex flex-wrap gap-2">
+              {bairrosLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="rounded-full border border-border/50 bg-background px-3 py-1 text-xs text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                  rel="related"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
 

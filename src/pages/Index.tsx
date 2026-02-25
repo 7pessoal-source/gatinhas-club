@@ -6,6 +6,7 @@ import Layout from "@/components/Layout";
 import SEOHead from "@/components/SEOHead";
 import ProfileCard from "@/components/ProfileCard";
 import SearchFilters from "@/components/SearchFilters";
+import FAQSection from "@/components/FAQSection";
 import { useProfiles } from "@/hooks/useProfiles";
 
 const homeSchema = {
@@ -32,6 +33,41 @@ const seoCategories = [
   { to: "/massagem-macapa", label: "Massagem" },
 ];
 
+const faqItems = [
+  {
+    pergunta: "Como encontro acompanhantes em Macapá no Gatinhas Club?",
+    resposta: "Use os filtros de busca para encontrar acompanhantes por bairro, categoria ou idade. Todos os perfis no Gatinhas Club são verificados com fotos 100% reais. Você pode entrar em contato direto via WhatsApp com a acompanhante de sua escolha.",
+  },
+  {
+    pergunta: "As fotos das acompanhantes são reais?",
+    resposta: "Sim! No Gatinhas Club, todas as fotos são 100% reais. Verificamos cada anúncio para garantir autenticidade e segurança. Discrição e confiança são nossas prioridades.",
+  },
+  {
+    pergunta: "Qual é o horário de atendimento?",
+    resposta: "As acompanhantes no Gatinhas Club oferecem atendimento 24h em Macapá. Você pode entrar em contato via WhatsApp a qualquer hora para agendar seu encontro.",
+  },
+  {
+    pergunta: "Como faço para anunciar meus serviços?",
+    resposta: "Clique em 'Anunciar' no menu principal e preencha o formulário de cadastro. Nosso processo é simples, rápido e seguro. Você terá seu perfil ativo em poucos minutos.",
+  },
+  {
+    pergunta: "O Gatinhas Club é seguro?",
+    resposta: "Sim! O Gatinhas Club é uma plataforma segura e discreta. Todos os anúncios são verificados, e não intermediamos serviços. Você entra em contato direto com a acompanhante via WhatsApp.",
+  },
+  {
+    pergunta: "Há acompanhantes de luxo disponíveis?",
+    resposta: "Sim! Temos uma seleção de acompanhantes de luxo em Macapá. Use o filtro de categoria para encontrar perfis premium com serviços exclusivos.",
+  },
+  {
+    pergunta: "Como funciona o contato com as acompanhantes?",
+    resposta: "Cada perfil possui um número de WhatsApp direto. Clique no perfil da acompanhante e entre em contato via WhatsApp para negociar valores e agendar seu encontro.",
+  },
+  {
+    pergunta: "Posso filtrar por bairro?",
+    resposta: "Sim! O Gatinhas Club oferece filtros por bairro, categoria, idade e muito mais. Encontre acompanhantes no Centro, Santa Rita, Buritizal, Trem, Jardim Equatorial e outros bairros de Macapá.",
+  },
+];
+
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedBairro, setSelectedBairro] = useState("");
@@ -56,8 +92,8 @@ const Index = () => {
   return (
     <Layout>
       <SEOHead
-        title="Acompanhantes em Macapá AP – Classificados Adultos | Gatinhas Club"
-        description="Gatinhas Club – Plataforma de acompanhantes, garotas de programa e massagistas independentes em Macapá, AP. Perfis verificados, fotos reais, contato direto. Apenas para maiores de 18 anos."
+        title="Acompanhantes em Macapá - Gatinhas Club"
+        description="Gatinhas Club – Acompanhantes em Macapá com fotos 100% reais, atendimento 24h. Elite do Amapá. Perfis verificados, contato direto via WhatsApp. Apenas +18."
         canonical="/"
         keywords="acompanhantes macapá, garotas de programa macapá, massagem macapá, acompanhantes ap, classificados adultos"
         schema={homeSchema}
@@ -72,7 +108,7 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             className="font-display text-4xl font-bold text-primary-foreground sm:text-5xl lg:text-6xl"
           >
-            Acompanhantes em Macapá – AP
+            Acompanhantes em Macapá - Gatinhas Club
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -80,8 +116,7 @@ const Index = () => {
             transition={{ delay: 0.15 }}
             className="mx-auto mt-4 max-w-xl text-sm text-primary-foreground/70 sm:text-base"
           >
-            Encontre as melhores acompanhantes, garotas de programa e massagistas independentes em Macapá – AP.{" "}
-            Classificados adultos verificados, seguros e discretos. Contato direto via WhatsApp.
+            Fotos 100% Reais • Atendimento 24h em Macapá • Elite do Amapá • Discrição Total
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -189,6 +224,12 @@ const Index = () => {
           </>
         )}
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection
+        titulo="Perguntas Frequentes sobre Acompanhantes em Macapá"
+        perguntas={faqItems}
+      />
 
       {/* SEO text block */}
       <section className="border-t border-border bg-secondary/30">

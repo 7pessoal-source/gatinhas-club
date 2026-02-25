@@ -19,6 +19,7 @@ import AuthPage from "./pages/AuthPage";
 import AdminPage from "./pages/AdminPage";
 import PainelGPPage from "./pages/PainelGPPage";
 import CadastroGPPage from "./pages/CadastroGPPage";
+import BairroPage from "./pages/BairroPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient({
@@ -65,6 +66,8 @@ const App = () => (
                 <Route path="/acompanhantes-zona-sul-macapa" element={<SEOPage />} />
                 <Route path="/acompanhantes-luxo-macapa" element={<SEOPage />} />
                 <Route path="/massagem-macapa" element={<SEOPage />} />
+                {/* Rotas de Silagem Local por Bairros */}
+                <Route path="/acompanhantes/:bairro" element={<BairroPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </AuthProvider>
