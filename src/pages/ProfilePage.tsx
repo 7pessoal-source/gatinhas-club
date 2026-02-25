@@ -5,33 +5,57 @@ import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import SEOHead from "@/components/SEOHead";
 import ProfileCard from "@/components/ProfileCard";
-import { mockProfiles } from "@/data/mockProfiles";
-import { trackWhatsappClick, trackProfileView } from "@/hooks/useProfiles";
+import { useProfile, useProfiles, trackWhatsappClick, trackProfileView } from "@/hooks/useProfiles";
 
 const ProfilePage = () => {
   const { id } = useParams();
-  const profile = mockProfiles.find((p) => p.id === id);
+
+  const { data: profile, isLoading } = useProfile(id || "");
+  const { data: allProfiles = [] } = useProfiles();
 
   useEffect(() => {
     if (id) trackProfileView(id);
   }, [id]);
 
+  const categorySlug = profile ? ({
+    Luxo: "acompanhantes-luxo-macapa",
+    Independente: "acompanhantes-macapa",
+    Massagem: "massagem-macapa",
+    Acompanhante: "acompanhantes-macapa",
+  }[profile.categoria] || "acompanhantes-macapa") : "acompanhantes-macapa";
+
+  const relatedProfiles = allProfiles
+    .filter((p) => profile && p.id !== profile.id && (p.bairro === profile.bairro || p.categoria === profile.categoria))
+    .slice(0, 4);
+
+  // Loading
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className="flex min-h-[60vh] items-center justify-center">
+          <div className="h-10 w-10 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+        </div>
+      </Layout>
+    );
+  }
+
+  // Não encontrado
   if (!profile) {
     return (
       <Layout>
         <div className="container py-20 text-center">
           <h1 className="font-display text-2xl font-bold text-foreground">Perfil não encontrado</h1>
-          <Link to="/" className="mt-4 inline-block text-sm text-primary hover:underline">
-            Voltar ao início
+          <p className="mt-2 text-sm text-muted-foreground">Este anúncio pode ter sido removido ou desativado.</p>
+          <Link to="/" className="mt-6 inline-block rounded-xl gradient-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground">
+            Ver todos os anúncios
           </Link>
         </div>
       </Layout>
     );
   }
 
-  const relatedProfiles = mockProfiles
-    .filter((p) => p.id !== profile.id && (p.bairro === profile.bairro || p.categoria === profile.categoria))
-    .slice(0, 4);
+  const fotos = profile.fotos?.filter(Boolean) || [];
+  const fotoPrincipal = profile.foto_principal || fotos[0];
 
   const schema = {
     "@context": "https://schema.org",
@@ -47,13 +71,6 @@ const ProfilePage = () => {
     },
   };
 
-  const categorySlug = {
-    Luxo: "acompanhantes-luxo-macapa",
-    Independente: "acompanhantes-macapa",
-    Massagem: "massagem-macapa",
-    Acompanhante: "acompanhantes-macapa",
-  }[profile.categoria] || "acompanhantes-macapa";
-
   return (
     <Layout>
       <SEOHead
@@ -66,9 +83,9 @@ const ProfilePage = () => {
       <div className="container py-6 sm:py-10">
         {/* Breadcrumb */}
         <nav className="mb-6 flex items-center gap-2 text-xs text-muted-foreground">
-          <Link to="/" className="hover:text-primary transition-colors">Início</Link>
+          <Link to="/" className="transition-colors hover:text-primary">Início</Link>
           <span>/</span>
-          <Link to={`/${categorySlug}`} className="hover:text-primary transition-colors">
+          <Link to={`/${categorySlug}`} className="transition-colors hover:text-primary">
             {profile.categoria} em Macapá
           </Link>
           <span>/</span>
@@ -76,19 +93,43 @@ const ProfilePage = () => {
         </nav>
 
         <div className="grid gap-6 lg:grid-cols-3">
-          {/* Photo */}
+          {/* Fotos */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             className="lg:col-span-1"
           >
-            <div className="aspect-[3/4] overflow-hidden rounded-2xl bg-secondary gradient-hero">
-              <div className="flex h-full items-center justify-center">
-                <span className="font-display text-8xl font-bold text-primary-foreground/20">
-                  {profile.nome[0]}
-                </span>
-              </div>
+            {/* Foto principal */}
+            <div className="aspect-[3/4] overflow-hidden rounded-2xl bg-secondary">
+              {fotoPrincipal ? (
+                <img
+                  src={fotoPrincipal}
+                  alt={`${profile.nome} – ${profile.categoria} em ${profile.bairro}, Macapá`}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center gradient-hero">
+                  <span className="font-display text-8xl font-bold text-primary-foreground/20">
+                    {profile.nome[0]}
+                  </span>
+                </div>
+              )}
             </div>
+
+            {/* Fotos extras */}
+            {fotos.length > 1 && (
+              <div className="mt-3 grid grid-cols-3 gap-2">
+                {fotos.map((url, i) => (
+                  <div key={i} className="aspect-square overflow-hidden rounded-lg border border-border">
+                    <img
+                      src={url}
+                      alt={`${profile.nome} foto ${i + 1}`}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </motion.div>
 
           {/* Info */}
@@ -120,14 +161,14 @@ const ProfilePage = () => {
                 <MapPin size={14} />
                 <Link
                   to={profile.bairro === "Centro" ? "/acompanhantes-centro-macapa" : "/acompanhantes-macapa"}
-                  className="hover:text-primary transition-colors"
+                  className="transition-colors hover:text-primary"
                 >
                   {profile.bairro}, Macapá – AP
                 </Link>
               </span>
               <Link
                 to={`/${categorySlug}`}
-                className="rounded-full bg-secondary px-3 py-0.5 text-xs font-medium text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                className="rounded-full bg-secondary px-3 py-0.5 text-xs font-medium text-secondary-foreground transition-colors hover:bg-primary/10 hover:text-primary"
               >
                 {profile.categoria}
               </Link>
@@ -163,7 +204,7 @@ const ProfilePage = () => {
           </motion.div>
         </div>
 
-        {/* Related profiles */}
+        {/* Perfis relacionados */}
         {relatedProfiles.length > 0 && (
           <div className="mt-12">
             <h2 className="mb-4 font-display text-xl font-bold text-foreground">
