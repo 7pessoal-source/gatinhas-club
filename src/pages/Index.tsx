@@ -6,7 +6,7 @@ import Layout from "@/components/Layout";
 import SEOHead from "@/components/SEOHead";
 import ProfileCard from "@/components/ProfileCard";
 import SearchFilters from "@/components/SearchFilters";
-import { mockProfiles } from "@/data/mockProfiles";
+import { useProfiles } from "@/hooks/useProfiles";
 
 const homeSchema = {
   "@context": "https://schema.org",
@@ -38,15 +38,17 @@ const Index = () => {
   const [selectedCategoria, setSelectedCategoria] = useState("");
   const [idadeRange, setIdadeRange] = useState<[number, number]>([18, 50]);
 
+  const { data: profiles = [], isLoading } = useProfiles();
+
   const filteredProfiles = useMemo(() => {
-    return mockProfiles.filter((p) => {
+    return profiles.filter((p) => {
       if (searchQuery && !p.nome.toLowerCase().includes(searchQuery.toLowerCase())) return false;
       if (selectedBairro && p.bairro !== selectedBairro) return false;
       if (selectedCategoria && p.categoria !== selectedCategoria) return false;
       if (p.idade < idadeRange[0] || p.idade > idadeRange[1]) return false;
       return true;
     });
-  }, [searchQuery, selectedBairro, selectedCategoria, idadeRange]);
+  }, [profiles, searchQuery, selectedBairro, selectedCategoria, idadeRange]);
 
   const destaques = filteredProfiles.filter((p) => p.destaque);
   const regulares = filteredProfiles.filter((p) => !p.destaque);
@@ -86,7 +88,7 @@ const Index = () => {
             className="mt-8 flex flex-wrap justify-center gap-4"
           >
             <Link
-              to="/anunciar"
+              to="/cadastro-gp"
               className="rounded-xl gradient-primary px-6 py-3 font-semibold text-primary-foreground transition-all hover:shadow-glow"
             >
               Anunciar Agora
@@ -100,18 +102,10 @@ const Index = () => {
             transition={{ delay: 0.5 }}
             className="mt-10 flex flex-wrap items-center justify-center gap-6 text-primary-foreground/50"
           >
-            <span className="flex items-center gap-1.5 text-xs">
-              <Shield size={14} /> Anúncios verificados
-            </span>
-            <span className="flex items-center gap-1.5 text-xs">
-              <MapPin size={14} /> Exclusivo Macapá – AP
-            </span>
-            <span className="flex items-center gap-1.5 text-xs">
-              <Sparkles size={14} /> +18 apenas
-            </span>
-            <span className="flex items-center gap-1.5 text-xs">
-              <Star size={14} /> 100% independentes
-            </span>
+            <span className="flex items-center gap-1.5 text-xs"><Shield size={14} /> Anúncios verificados</span>
+            <span className="flex items-center gap-1.5 text-xs"><MapPin size={14} /> Exclusivo Macapá – AP</span>
+            <span className="flex items-center gap-1.5 text-xs"><Sparkles size={14} /> +18 apenas</span>
+            <span className="flex items-center gap-1.5 text-xs"><Star size={14} /> 100% independentes</span>
           </motion.div>
         </div>
       </section>
@@ -146,95 +140,75 @@ const Index = () => {
           onIdadeChange={setIdadeRange}
         />
 
-        {/* Destaques */}
-        {destaques.length > 0 && (
-          <div className="mt-8">
-            <h2 className="mb-4 flex items-center gap-2 font-display text-xl font-bold text-foreground">
-              <Sparkles size={18} className="text-primary" />
-              Perfis em Destaque em Macapá
-            </h2>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-              {destaques.map((p, i) => (
-                <ProfileCard key={p.id} profile={p} index={i} />
-              ))}
-            </div>
+        {isLoading ? (
+          <div className="flex items-center justify-center py-24">
+            <div className="h-10 w-10 animate-spin rounded-full border-2 border-primary border-t-transparent" />
           </div>
-        )}
+        ) : (
+          <>
+            {/* Destaques */}
+            {destaques.length > 0 && (
+              <div className="mt-8">
+                <h2 className="mb-4 flex items-center gap-2 font-display text-xl font-bold text-foreground">
+                  <Sparkles size={18} className="text-primary" />
+                  Perfis em Destaque em Macapá
+                </h2>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                  {destaques.map((p, i) => (
+                    <ProfileCard key={p.id} profile={p} index={i} />
+                  ))}
+                </div>
+              </div>
+            )}
 
-        {/* Todos */}
-        <div className="mt-8">
-          <h2 className="mb-4 font-display text-xl font-bold text-foreground">
-            {selectedBairro || selectedCategoria
-              ? "Resultados da Busca"
-              : "Todos os Anúncios em Macapá – AP"}
-          </h2>
-          {regulares.length > 0 ? (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-              {regulares.map((p, i) => (
-                <ProfileCard key={p.id} profile={p} index={i + destaques.length} />
-              ))}
+            {/* Todos */}
+            <div className="mt-8">
+              <h2 className="mb-4 font-display text-xl font-bold text-foreground">
+                {selectedBairro || selectedCategoria
+                  ? "Resultados da Busca"
+                  : "Todos os Anúncios em Macapá – AP"}
+              </h2>
+              {regulares.length > 0 ? (
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                  {regulares.map((p, i) => (
+                    <ProfileCard key={p.id} profile={p} index={i + destaques.length} />
+                  ))}
+                </div>
+              ) : (
+                <div className="py-16 text-center">
+                  <p className="text-sm text-muted-foreground">
+                    {profiles.length === 0
+                      ? "Nenhum anúncio publicado ainda."
+                      : "Nenhum perfil encontrado com os filtros selecionados."}
+                  </p>
+                </div>
+              )}
             </div>
-          ) : (
-            <p className="py-12 text-center text-sm text-muted-foreground">
-              Nenhum perfil encontrado com os filtros selecionados.
-            </p>
-          )}
-        </div>
+          </>
+        )}
       </section>
 
       {/* SEO text block */}
-      <section className="bg-secondary/30 border-t border-border">
+      <section className="border-t border-border bg-secondary/30">
         <div className="container py-10">
-          <h2 className="font-display text-2xl font-bold text-foreground mb-4">
+          <h2 className="mb-4 font-display text-2xl font-bold text-foreground">
             Classificados Adultos em Macapá – AP
           </h2>
-          <div className="prose prose-sm max-w-none text-muted-foreground space-y-3">
+          <div className="prose prose-sm max-w-none space-y-3 text-muted-foreground">
             <p>
               O <strong>Gatinhas Club</strong> é a principal plataforma de{" "}
-              <Link to="/acompanhantes-macapa" className="text-primary hover:underline font-medium">
-                acompanhantes em Macapá
-              </Link>{" "}
+              <Link to="/acompanhantes-macapa" className="font-medium text-primary hover:underline">acompanhantes em Macapá</Link>{" "}
               e{" "}
-              <Link to="/garotas-de-programa-macapa" className="text-primary hover:underline font-medium">
-                garotas de programa em Macapá
-              </Link>
-              , capital do estado do Amapá (AP). Nossa plataforma reúne anunciantes independentes
-              de toda a cidade, dos bairros centrais às zonas norte e sul.
+              <Link to="/garotas-de-programa-macapa" className="font-medium text-primary hover:underline">garotas de programa em Macapá</Link>,
+              capital do estado do Amapá (AP).
             </p>
             <p>
               Encontre{" "}
-              <Link to="/acompanhantes-centro-macapa" className="text-primary hover:underline">
-                acompanhantes no Centro de Macapá
-              </Link>
-              ,{" "}
-              <Link to="/acompanhantes-zona-norte-macapa" className="text-primary hover:underline">
-                acompanhantes na Zona Norte de Macapá
-              </Link>{" "}
-              (Novo Horizonte, Jardim Equatorial, Pacoval, Zerão),{" "}
-              <Link to="/acompanhantes-zona-sul-macapa" className="text-primary hover:underline">
-                acompanhantes na Zona Sul de Macapá
-              </Link>{" "}
-              (Congós, Laguinho, Trem, Beirol) e{" "}
-              <Link to="/massagem-macapa" className="text-primary hover:underline">
-                massagem em Macapá
-              </Link>
-              . Todos os anúncios são de responsabilidade exclusiva das anunciantes,
-              maiores de 18 anos.
-            </p>
-            <p>
-              Quer anunciar? Conheça nossos{" "}
-              <Link to="/anunciar" className="text-primary hover:underline font-medium">
-                planos de anúncio
-              </Link>{" "}
-              e comece a receber contatos hoje mesmo. Dúvidas sobre privacidade? Consulte nossa{" "}
-              <Link to="/privacidade" className="text-primary hover:underline">
-                política de privacidade
-              </Link>{" "}
-              e nossos{" "}
-              <Link to="/termos" className="text-primary hover:underline">
-                termos de uso
-              </Link>
-              .
+              <Link to="/acompanhantes-centro-macapa" className="text-primary hover:underline">acompanhantes no Centro de Macapá</Link>,{" "}
+              <Link to="/acompanhantes-zona-norte-macapa" className="text-primary hover:underline">acompanhantes na Zona Norte</Link>,{" "}
+              <Link to="/acompanhantes-zona-sul-macapa" className="text-primary hover:underline">acompanhantes na Zona Sul</Link>{" "}
+              e <Link to="/massagem-macapa" className="text-primary hover:underline">massagem em Macapá</Link>.
+              Todos os anúncios são de responsabilidade exclusiva das anunciantes, maiores de 18 anos.
             </p>
           </div>
         </div>
