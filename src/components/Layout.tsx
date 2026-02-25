@@ -58,7 +58,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             )}
             {user ? (
               <>
-                {isGP && (
+                {isGP && !isAdmin && (
                   <Link to="/painel" className="flex items-center gap-1 rounded-lg border border-border bg-card px-3 py-1.5 text-sm font-medium text-foreground hover:bg-accent transition-colors">
                     <LayoutDashboard size={14} /> Painel
                   </Link>
@@ -122,7 +122,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 )}
                 {user ? (
                   <>
-                    {isGP && (
+                    {isGP && !isAdmin && (
                       <Link to="/painel" onClick={() => setMenuOpen(false)} className="flex items-center gap-1 text-sm font-medium text-muted-foreground">
                         <LayoutDashboard size={14} /> Meu Painel
                       </Link>

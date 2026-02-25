@@ -37,6 +37,7 @@ export default function PainelGPPage() {
 
   useEffect(() => {
     if (!loading && !user) navigate('/auth');
+    if (!loading && isAdmin) navigate('/admin');
     if (!loading && !isGP && !isAdmin) navigate('/cadastro-gp');
   }, [loading, user, isGP, isAdmin, navigate]);
 
