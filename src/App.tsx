@@ -45,7 +45,7 @@ const App = () => (
                   </ProtectedRoute>
                 } />
                 <Route path="/painel" element={
-                  <ProtectedRoute requireGP>
+                  <ProtectedRoute>
                     <PainelGPPage />
                   </ProtectedRoute>
                 } />
@@ -65,8 +65,6 @@ const App = () => (
                 <Route path="/acompanhantes-zona-sul-macapa" element={<SEOPage />} />
                 <Route path="/acompanhantes-luxo-macapa" element={<SEOPage />} />
                 <Route path="/massagem-macapa" element={<SEOPage />} />
-                {/* Catch-all for other SEO pages */}
-                <Route path="/:slug" element={<SEOPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </AuthProvider>
