@@ -13,11 +13,11 @@ const homeSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Gatinhas Club – Acompanhantes em Macapá AP",
-  url: "https://gatinhasclub.com.br",
+  url: "https://www.gatinhasclub.site",
   description: "Classificados adultos independentes em Macapá – AP. Acompanhantes, garotas de programa e massagistas.",
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://gatinhasclub.com.br/?q={search_term_string}",
+    target: "https://www.gatinhasclub.site/?q={search_term_string}",
     "query-input": "required name=search_term_string",
   },
 };

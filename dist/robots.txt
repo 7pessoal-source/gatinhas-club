@@ -34,4 +34,4 @@ Allow: /
 Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://gatinhasclub.com.br/sitemap.xml
+Sitemap: https://www.gatinhasclub.site/sitemap.xml
