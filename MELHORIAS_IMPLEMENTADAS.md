@@ -154,7 +154,7 @@ Se você deseja configurar completamente a autenticação de email, adicione tam
 **DMARC (Domain-based Message Authentication, Reporting and Conformance):**
 - Tipo: TXT
 - Nome: `_dmarc`
-- Valor: `v=DMARC1; p=quarantine; rua=mailto:admin@gatinhasclub.com.br`
+- Valor: `v=DMARC1; p=quarantine; rua=mailto:admin@gatinhasclub.site`
 
 ### Benefícios
 - Melhora a entregabilidade de emails
