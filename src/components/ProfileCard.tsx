@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { MapPin, BadgeCheck, Sparkles } from "lucide-react";
+import { MapPin, BadgeCheck, Sparkles, Heart } from "lucide-react";
+import { useFavorites } from "@/hooks/useFavorites";
 import { motion } from "framer-motion";
 import OptimizedImage from "./OptimizedImage";
 import type { Profile } from "@/data/mockProfiles";
@@ -10,7 +11,9 @@ interface ProfileCardProps {
 }
 
 const ProfileCard = ({ profile, index }: ProfileCardProps) => {
+  const { toggleFavorite, isFavorite } = useFavorites();
   const foto = profile.foto_principal || profile.fotos?.[0];
+  const favorited = isFavorite(profile.id);
 
   return (
     <motion.div
@@ -65,6 +68,20 @@ const ProfileCard = ({ profile, index }: ProfileCardProps) => {
               {profile.categoria}
             </span>
           </div>
+
+          {/* Botão Favorito */}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              toggleFavorite(profile.id);
+            }}
+            className={`absolute right-2 top-2 rounded-full p-1.5 backdrop-blur transition-all ${
+              favorited ? "bg-primary text-primary-foreground" : "bg-card/80 text-foreground hover:bg-card"
+            }`}
+          >
+            <Heart size={14} fill={favorited ? "currentColor" : "none"} />
+          </button>
         </div>
 
         {/* Info */}

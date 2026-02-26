@@ -45,6 +45,15 @@ export const useProfile = (id: string) => {
 };
 
 export const trackWhatsappClick = async (profileId: string) => {
+  // GA4 Event
+  if (typeof window !== 'undefined' && (window as any).gtag) {
+    (window as any).gtag('event', 'whatsapp_click', {
+      'profile_id': profileId,
+      'event_category': 'conversion',
+      'event_label': 'WhatsApp Contact'
+    });
+  }
+  
   if (!isSupabaseConfigured()) return;
   await supabase.rpc('increment_whatsapp_click', { profile_id: profileId });
 };

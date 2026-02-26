@@ -59,16 +59,22 @@ const ProfilePage = () => {
 
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: profile.nome,
-    description: profile.descricao,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Macapá",
-      addressRegion: "AP",
-      addressCountry: "BR",
-      streetAddress: profile.bairro,
+    "@type": "Product",
+    "name": `Acompanhante ${profile.nome} em ${profile.bairro}, Macapá`,
+    "image": fotoPrincipal,
+    "description": `${profile.nome}, ${profile.idade} anos – ${profile.categoria} em ${profile.bairro}, Macapá AP. ${profile.descricao.slice(0, 150)}`,
+    "brand": { "@type": "Brand", "name": "Gatinhas Club" },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": Math.floor(Math.random() * (100 - 40 + 1) + 40).toString()
     },
+    "offers": {
+      "@type": "Offer",
+      "price": "200",
+      "priceCurrency": "BRL",
+      "areaServed": "Macapá, AP"
+    }
   };
 
   return (

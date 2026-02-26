@@ -106,6 +106,7 @@ const SEOHead = ({
             addressCountry: "BR",
           },
           sameAs: [
+            "https://pt.wikipedia.org/wiki/Macap%C3%A1",
             "https://www.facebook.com/gatinhasclub",
             "https://www.instagram.com/gatinhasclub",
             "https://www.twitter.com/gatinhasclub",
