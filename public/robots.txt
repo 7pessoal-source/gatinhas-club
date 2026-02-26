@@ -1,0 +1,38 @@
+# Gatinhas Club - robots.txt
+# Otimizado para SEO e rastreamento eficiente
+
+User-agent: *
+Allow: /
+Allow: /acompanhantes-*
+Allow: /garotas-de-programa-*
+Allow: /massagem-*
+Allow: /perfil/*
+Disallow: /admin
+Disallow: /painel
+Disallow: /auth
+Disallow: /cadastro-gp
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*?*
+Disallow: /*#*
+
+# Permitir rastreamento de assets
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://www.gatinhasclub.site/sitemap.xml
+Sitemap: https://www.gatinhasclub.site/sitemap-images.xml
