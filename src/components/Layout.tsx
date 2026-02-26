@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, LogIn, LayoutDashboard, ShieldCheck } from "lucide-react";
+import { Menu, X, LogIn, LayoutDashboard, ShieldCheck, Newspaper } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/contexts/AuthContext";
@@ -12,8 +12,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const navLinks = [
     { to: "/", label: "Início" },
     { to: "/acompanhantes-macapa", label: "Acompanhantes" },
-    { to: "/garotas-de-programa-macapa", label: "Garotas de Programa" },
-    { to: "/massagem-macapa", label: "Massagem" },
+    { to: "/blog", label: "Blog" },
     { to: "/anunciar", label: "Anunciar" },
   ];
 
@@ -175,6 +174,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               <h4 className="mb-3 text-sm font-semibold text-foreground">Navegação</h4>
               <div className="flex flex-col gap-2">
                 <Link to="/" className="text-xs text-muted-foreground hover:text-primary transition-colors">Início</Link>
+                <Link to="/blog" className="text-xs text-muted-foreground hover:text-primary transition-colors font-bold">Blog</Link>
                 <Link to="/anunciar" className="text-xs text-muted-foreground hover:text-primary transition-colors">Anunciar</Link>
                 <Link to="/termos" className="text-xs text-muted-foreground hover:text-primary transition-colors">Termos de Uso</Link>
                 <Link to="/privacidade" className="text-xs text-muted-foreground hover:text-primary transition-colors">Política de Privacidade</Link>

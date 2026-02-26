@@ -20,6 +20,8 @@ import AdminPage from "./pages/AdminPage";
 import PainelGPPage from "./pages/PainelGPPage";
 import CadastroGPPage from "./pages/CadastroGPPage";
 import BairroPage from "./pages/BairroPage";
+import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient({
@@ -57,6 +59,11 @@ const App = () => (
                 <Route path="/privacidade" element={<PrivacidadePage />} />
                 <Route path="/cookies" element={<CookiesPage />} />
                 <Route path="/aviso-legal" element={<AvisoLegalPage />} />
+                
+                {/* Blog routes */}
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:id" element={<BlogPostPage />} />
+
                 {/* SEO landing pages */}
                 <Route path="/acompanhantes-macapa" element={<SEOPage />} />
                 <Route path="/garotas-de-programa-macapa" element={<SEOPage />} />
