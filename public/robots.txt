@@ -33,5 +33,6 @@ User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
-# Sitemap
+# Sitemaps
 Sitemap: https://www.gatinhasclub.site/sitemap.xml
+Sitemap: https://www.gatinhasclub.site/sitemap-images.xml

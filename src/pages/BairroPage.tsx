@@ -170,8 +170,8 @@ export const bairrosConfig: Record<string, BairroConfig> = {
     h1: "Acompanhantes em Novo Horizonte – Macapá, AP",
     metaDescription: "Garotas de programa no Novo Horizonte, Zona Norte. Próximo ao Parque de Exposições da Fazendinha.",
     descricaoCurta: "Zona Norte em Expansão - Modernidade e Novos Ares",
-    descricaoLonga: "O Novo Horizonte é uma das áreas de maior expansão residencial na Zona Norte de Macapá. Localizado no caminho para o Parque de Exposições da Fazendinha, o bairro atrai quem busca modernidade e novos empreendimentos. É uma região mais afastada do caos do centro, oferecendo silêncio e privacidade para encontros de alto nível. Encontre acompanhantes no Novo Horizonte que valorizam a discrição em um bairro novo, planejado e com crescente infraestrutura de serviços e lazer.",
-    pontosDReferencia: ["Parque de Exposições da Fazendinha", "Áreas de Expansão"],
+    descricaoLonga: "O Novo Horizonte é um bairro em franca expansão na Zona Norte de Macapá. Caracteriza-se por novos empreendimentos residenciais e uma atmosfera de crescimento. Próximo ao Parque de Exposições da Fazendinha e com acesso facilitado, é uma região que atrai quem busca novidades e um ambiente em desenvolvimento. As acompanhantes no Novo Horizonte oferecem um atendimento moderno e discreto para a crescente população desta parte da capital.",
+    pontosDReferencia: ["Parque de Exposições", "Novos Residenciais", "Acesso Zona Norte"],
     proximidades: "Zona Norte, próximo ao Jardim Felicidade",
     filterFn: (p) => p.bairro === "Novo Horizonte",
     relatedBairros: [
@@ -248,7 +248,7 @@ const BairroPage = () => {
         canonical={`/acompanhantes/${config.slug}`}
         keywords={`acompanhantes ${config.nome}, ${config.nome} macapa, classificados adultos, acompanhantes macapa`}
         schema={bairroSchema}
-        ogImageAlt={config.h1}
+        ogImageAlt={`Acompanhantes no bairro ${config.nome} em Macapá`}
       />
 
       {/* Hero */}

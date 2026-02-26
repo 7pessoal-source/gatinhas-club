@@ -1,14 +1,16 @@
 import { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { MapPin, BadgeCheck, ArrowLeft, MessageCircle, Sparkles } from "lucide-react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { MapPin, BadgeCheck, MessageCircle, Sparkles, Navigation, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import SEOHead from "@/components/SEOHead";
 import ProfileCard from "@/components/ProfileCard";
 import { useProfile, useProfiles, trackWhatsappClick, trackProfileView } from "@/hooks/useProfiles";
+import { bairrosConfig } from "./BairroPage";
 
 const ProfilePage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const { data: profile, isLoading } = useProfile(id || "");
   const { data: allProfiles = [] } = useProfiles();
@@ -16,6 +18,20 @@ const ProfilePage = () => {
   useEffect(() => {
     if (id) trackProfileView(id);
   }, [id]);
+
+  // Lógica de Redirecionamento Inteligente (Soft 404 / 301 Redirect)
+  useEffect(() => {
+    if (!isLoading && !profile) {
+      // Se o perfil não existe, tentamos encontrar o bairro dele se tivéssemos essa info,
+      // mas como o perfil sumiu, redirecionamos para a home ou uma categoria geral.
+      // Em um cenário real com DB, poderíamos buscar o último bairro conhecido.
+      // Aqui, vamos redirecionar para a home após um curto período ou imediatamente.
+      const timer = setTimeout(() => {
+        navigate("/", { replace: true });
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [profile, isLoading, navigate]);
 
   const categorySlug = profile ? ({
     Luxo: "acompanhantes-luxo-macapa",
@@ -28,6 +44,11 @@ const ProfilePage = () => {
     .filter((p) => profile && p.id !== profile.id && (p.bairro === profile.bairro || p.categoria === profile.categoria))
     .slice(0, 4);
 
+  // Encontrar o slug do bairro atual para o link interno
+  const currentBairroSlug = Object.values(bairrosConfig).find(
+    (b) => b.nome === profile?.bairro
+  )?.slug;
+
   // Loading
   if (isLoading) {
     return (
@@ -39,16 +60,33 @@ const ProfilePage = () => {
     );
   }
 
-  // Não encontrado
+  // Não encontrado - Interface de Redirecionamento
   if (!profile) {
     return (
       <Layout>
+        <SEOHead 
+          title="Perfil não encontrado | Gatinhas Club" 
+          description="Este perfil não está mais disponível. Redirecionando para as melhores acompanhantes de Macapá..."
+          noIndex={true}
+        />
         <div className="container py-20 text-center">
-          <h1 className="font-display text-2xl font-bold text-foreground">Perfil não encontrado</h1>
-          <p className="mt-2 text-sm text-muted-foreground">Este anúncio pode ter sido removido ou desativado.</p>
-          <Link to="/" className="mt-6 inline-block rounded-xl gradient-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground">
-            Ver todos os anúncios
-          </Link>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="mx-auto max-w-md rounded-2xl border border-border bg-card p-8 shadow-xl"
+          >
+            <h1 className="font-display text-2xl font-bold text-foreground">Perfil Indisponível</h1>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Este anúncio foi removido ou expirou. Para sua melhor experiência, estamos te levando para ver outras 
+              <strong> acompanhantes disponíveis agora em Macapá</strong>.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+            </div>
+            <Link to="/" className="mt-8 inline-block text-sm font-semibold text-primary hover:underline">
+              Clique aqui se não for redirecionado automaticamente
+            </Link>
+          </motion.div>
         </div>
       </Layout>
     );
@@ -166,7 +204,7 @@ const ProfilePage = () => {
               <span className="flex items-center gap-1">
                 <MapPin size={14} />
                 <Link
-                  to={profile.bairro === "Centro" ? "/acompanhantes-centro-macapa" : "/acompanhantes-macapa"}
+                  to={currentBairroSlug ? `/acompanhantes/${currentBairroSlug}` : "/acompanhantes-macapa"}
                   className="transition-colors hover:text-primary"
                 >
                   {profile.bairro}, Macapá – AP
@@ -196,6 +234,32 @@ const ProfilePage = () => {
               <MessageCircle size={20} />
               Chamar no WhatsApp
             </a>
+
+            {/* Internal Linking Loop Blocks */}
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {currentBairroSlug && (
+                <Link
+                  to={`/acompanhantes/${currentBairroSlug}`}
+                  className="flex items-center gap-3 rounded-xl border border-primary/20 bg-primary/5 p-4 transition-all hover:bg-primary/10"
+                >
+                  <Navigation className="text-primary" size={20} />
+                  <div>
+                    <p className="text-xs font-semibold text-primary uppercase tracking-wider">Próximas a você</p>
+                    <p className="text-sm font-bold text-foreground">Outras acompanhantes no bairro {profile.bairro}</p>
+                  </div>
+                </Link>
+              )}
+              <Link
+                to="/"
+                className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition-all hover:bg-secondary"
+              >
+                <Globe className="text-muted-foreground" size={20} />
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Explorar Capital</p>
+                  <p className="text-sm font-bold text-foreground">Ver todas em Macapá</p>
+                </div>
+              </Link>
+            </div>
 
             {/* Disclaimer */}
             <p className="mt-6 rounded-lg bg-secondary/50 p-3 text-[10px] text-muted-foreground">
