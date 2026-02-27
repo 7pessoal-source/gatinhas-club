@@ -25,8 +25,9 @@ export const seoPages: Record<string, SEOPageConfig> = {
     h1: "Acompanhantes em Macapá – AP",
     h2: "Encontre Acompanhantes Independentes em Macapá, Amapá",
     metaDescription: "As melhores acompanhantes independentes em Macapá, AP. Perfis verificados, fotos reais e contato direto via WhatsApp. Classificados adultos seguros e discretos no Gatinhas Club.",
-    content: "Bem-vindo ao Gatinhas Club, o principal portal de acompanhantes em Macapá – AP. Aqui você encontra perfis de anunciantes independentes que atuam na capital do Amapá, em bairros como Centro, Santa Rita, Buritizal, Laguinho, Congós, Marco Zero e muito mais.",
-    extraContent: "Nossa plataforma reúne acompanhantes no Centro de Macapá, acompanhantes na Zona Norte de Macapá, acompanhantes na Zona Sul de Macapá e garotas de programa em Macapá AP.",
+    content: `Bem-vindo ao Gatinhas Club, o principal portal de acompanhantes em Macapá – AP. Aqui você encontra perfis de anunciantes independentes que atuam na capital do Amapá, em bairros como Centro, Santa Rita, Buritizal, Laguinho, Congós, Marco Zero e muito mais.`, 
+    extraContent: `Macapá, capital do estado do Amapá (AP), é a única capital brasileira cortada pela linha do Equador. Com uma população de aproximadamente 500 mil habitantes, a cidade possui vida noturna ativa e uma demanda crescente por serviços de acompanhantes independentes. No Gatinhas Club você encontra perfis verificados de acompanhantes em Macapá com fotos reais, descrição completa e contato direto via WhatsApp. Todas as anunciantes são maiores de 18 anos e atuam de forma completamente independente.
+Nossa plataforma atende a capital Macapá e a cidade de Santana, a segunda maior do Amapá. Você pode filtrar por bairro, tipo de atendimento e disponibilidade. Acompanhantes no Centro de Macapá, acompanhantes na Zona Norte, Zona Sul e todas as regiões da cidade estão no Gatinhas Club. Encontre também massagistas independentes em Macapá, acompanhantes de luxo para eventos e jantares, e garotas de programa em Macapá AP com atendimento discreto e profissional.`, 
     filterFn: (p) => ["Luxo", "Independente", "Acompanhante"].includes(p.categoria),
     relatedLinks: [
       { to: "/acompanhantes-centro-macapa", label: "Acompanhantes no Centro de Macapá" },
@@ -42,8 +43,8 @@ export const seoPages: Record<string, SEOPageConfig> = {
     h1: "Garotas de Programa em Macapá – AP",
     h2: "Anúncios Independentes – Garotas de Programa Macapá",
     metaDescription: "Garotas de programa em Macapá, AP. Perfis verificados e com fotos reais no Gatinhas Club. Classificados adultos para maiores de 18 anos em Macapá – Amapá.",
-    content: "Encontre no Gatinhas Club os perfis de garotas de programa em Macapá, a capital do Amapá. Anúncios independentes, discretos e verificados. Todas as anunciantes são maiores de 18 anos.",
-    extraContent: "Confira também acompanhantes em Macapá AP, acompanhantes no Centro de Macapá, acompanhantes na Zona Norte e na Zona Sul.",
+    content: `Encontre no Gatinhas Club os perfis de garotas de programa em Macapá, a capital do Amapá. Anúncios independentes, discretos e verificados. Todas as anunciantes são maiores de 18 anos.`, 
+    extraContent: `Nossa plataforma é dedicada a conectar você com garotas de programa em Macapá que oferecem serviços de forma independente e com total discrição. Priorizamos a segurança e a autenticidade, garantindo que todos os perfis sejam verificados e as fotos 100% reais. Seja para um encontro casual, uma companhia para eventos ou momentos de relaxamento, o Gatinhas Club oferece uma vasta seleção de profissionais em diversas categorias e bairros de Macapá. Explore perfis detalhados, entre em contato direto via WhatsApp e agende seu encontro com confiança. Acompanhantes no Centro, Zona Norte, Zona Sul e outros bairros estão disponíveis para atender às suas preferências.`, 
     filterFn: (p) => ["Luxo", "Independente", "Acompanhante"].includes(p.categoria),
     relatedLinks: [
       { to: "/acompanhantes-macapa", label: "Acompanhantes em Macapá" },
@@ -59,7 +60,8 @@ export const seoPages: Record<string, SEOPageConfig> = {
     h1: "Acompanhante em Macapá – AP (Amapá)",
     h2: "Perfis Verificados de Acompanhantes em Macapá – AP",
     metaDescription: "Acompanhante Macapá AP – encontre perfis verificados no Gatinhas Club. Classificados adultos independentes em Macapá, capital do Amapá.",
-    content: "Macapá, capital do estado do Amapá (AP), é a única capital brasileira cortada pela linha do Equador. No Gatinhas Club você encontra acompanhantes em Macapá AP com perfis verificados, fotos reais e contato direto.",
+    content: `Macapá, capital do estado do Amapá (AP), é a única capital brasileira cortada pela linha do Equador. Com sua rica cultura e vida noturna vibrante, a cidade atrai visitantes e moradores em busca de momentos especiais. No Gatinhas Club, você encontra uma seleção exclusiva de acompanhantes em Macapá AP, todas com perfis verificados e fotos 100% reais. Nossa plataforma garante discrição e segurança, permitindo que você entre em contato direto com a acompanhante de sua escolha via WhatsApp.`, 
+    extraContent: `Seja para um jantar romântico, uma companhia para eventos sociais ou simplesmente para desfrutar de momentos de lazer, as acompanhantes do Gatinhas Club estão prontas para oferecer uma experiência inesquecível. Explore perfis detalhados, com informações sobre serviços, preferências e disponibilidade. Atendemos em diversos bairros de Macapá, incluindo Centro, Santa Rita, Buritizal, e muitos outros. Além de acompanhantes, você também pode encontrar massagistas e garotas de programa independentes, todas comprometidas com a sua satisfação e discrição. Priorizamos a autenticidade e a transparência, para que você possa fazer sua escolha com total confiança.`, 
     filterFn: () => true,
     relatedLinks: [
       { to: "/acompanhantes-macapa", label: "Acompanhantes em Macapá" },
@@ -74,7 +76,8 @@ export const seoPages: Record<string, SEOPageConfig> = {
     h1: "Acompanhantes no Centro de Macapá – AP",
     h2: "Perfis Verificados no Bairro Centro, Macapá",
     metaDescription: "Encontre acompanhantes independentes no Centro de Macapá, AP. Região central com fácil acesso, discrição total.",
-    content: "O bairro Centro de Macapá é o coração da capital do Amapá, com fácil acesso por toda a cidade. No Gatinhas Club você encontra acompanhantes no Centro de Macapá com perfis verificados e contato direto.",
+    content: `O bairro Centro de Macapá é o coração pulsante da capital do Amapá, com fácil acesso por toda a cidade e uma vida noturna agitada. No Gatinhas Club, você encontra uma seleção exclusiva de acompanhantes no Centro de Macapá, todas com perfis verificados e fotos 100% reais. Nossa plataforma garante discrição e segurança, permitindo que você entre em contato direto com a acompanhante de sua escolha via WhatsApp.`, 
+    extraContent: `A região central de Macapá é ideal para quem busca encontros discretos e convenientes, próximo a hotéis, restaurantes e pontos turísticos como a Fortaleza de São José. As acompanhantes disponíveis no Centro oferecem uma variedade de serviços, desde companhia para eventos até momentos íntimos e relaxantes. Explore perfis detalhados, com informações sobre serviços, preferências e disponibilidade. Priorizamos a autenticidade e a transparência, para que você possa fazer sua escolha com total confiança e desfrutar de uma experiência inesquecível no coração de Macapá.`, 
     filterFn: (p) => p.bairro === "Centro",
     relatedLinks: [
       { to: "/acompanhantes-macapa", label: "Acompanhantes em Macapá" },
@@ -89,7 +92,8 @@ export const seoPages: Record<string, SEOPageConfig> = {
     h1: "Acompanhantes na Zona Norte de Macapá – AP",
     h2: "Anúncios Independentes na Zona Norte de Macapá",
     metaDescription: "Acompanhantes independentes na Zona Norte de Macapá, AP – bairros Novo Horizonte, Jardim Equatorial, Pacoval e Zerão.",
-    content: "A Zona Norte de Macapá compreende bairros como Novo Horizonte, Jardim Equatorial, Pacoval e Zerão. Encontre acompanhantes na Zona Norte de Macapá com perfis verificados e contato direto.",
+    content: `A Zona Norte de Macapá compreende bairros vibrantes como Novo Horizonte, Jardim Equatorial, Pacoval e Zerão. Se você busca acompanhantes na Zona Norte de Macapá, o Gatinhas Club oferece perfis verificados e contato direto.`, 
+    extraContent: `Nesta região em constante crescimento, você encontrará uma variedade de acompanhantes independentes, prontas para proporcionar momentos de prazer e discrição. Nossos perfis são cuidadosamente verificados, garantindo fotos 100% reais e informações precisas. A Zona Norte é ideal para quem busca conveniência e atendimento de qualidade em uma área dinâmica da cidade. Explore as opções disponíveis, entre em contato via WhatsApp e agende seu encontro com total segurança e privacidade.`, 
     filterFn: (p) => ["Novo Horizonte", "Jardim Equatorial", "Pacoval", "Zerão"].includes(p.bairro),
     relatedLinks: [
       { to: "/acompanhantes-macapa", label: "Acompanhantes em Macapá" },
@@ -103,7 +107,8 @@ export const seoPages: Record<string, SEOPageConfig> = {
     h1: "Acompanhantes na Zona Sul de Macapá – AP",
     h2: "Anúncios Independentes na Zona Sul de Macapá",
     metaDescription: "Acompanhantes independentes na Zona Sul de Macapá, AP – Congós, Laguinho, Trem, Beirol, Buritizal e Santa Rita.",
-    content: "A Zona Sul de Macapá reúne bairros populares como Congós, Laguinho, Trem, Beirol, Buritizal e Santa Rita. Encontre acompanhantes na Zona Sul de Macapá com perfis verificados e contato direto.",
+    content: `A Zona Sul de Macapá reúne bairros populares e movimentados como Congós, Laguinho, Trem, Beirol, Buritizal e Santa Rita. Se você está em busca de acompanhantes na Zona Sul de Macapá, o Gatinhas Club é a sua plataforma ideal. Oferecemos perfis verificados de profissionais independentes, garantindo discrição e segurança em seus encontros.`, 
+    extraContent: `Nesta região da capital amapaense, você encontrará uma diversidade de acompanhantes prontas para atender às suas expectativas. Seja para uma companhia agradável, um momento de relaxamento ou uma experiência mais íntima, nossas anunciantes oferecem serviços de alta qualidade. Todos os perfis contam com fotos 100% reais e informações detalhadas, permitindo que você faça uma escolha informada. Entre em contato direto via WhatsApp com a acompanhante de sua preferência e agende seu encontro com total privacidade. A Zona Sul de Macapá, com seus diversos pontos de interesse e fácil acesso, proporciona o cenário perfeito para encontros memoráveis.`, 
     filterFn: (p) => ["Congós", "Laguinho", "Trem", "Beirol", "Buritizal", "Santa Rita"].includes(p.bairro),
     relatedLinks: [
       { to: "/acompanhantes-macapa", label: "Acompanhantes em Macapá" },
@@ -117,7 +122,8 @@ export const seoPages: Record<string, SEOPageConfig> = {
     h1: "Massagem Relaxante e Terapêutica em Macapá – AP",
     h2: "Massagistas Independentes em Macapá, Amapá",
     metaDescription: "Encontre massagistas independentes em Macapá, AP. Massagem relaxante, terapêutica e sensorial.",
-    content: "Confira os perfis de massagistas independentes em Macapá, capital do Amapá. Serviços de massagem relaxante, terapêutica e sensorial. Contato direto via WhatsApp.",
+    content: `Confira os perfis de massagistas independentes em Macapá, capital do Amapá. No Gatinhas Club, você encontra profissionais qualificadas que oferecem uma variedade de serviços de massagem, incluindo relaxante, terapêutica e sensorial.`, 
+    extraContent: `Nossas massagistas são independentes e trabalham com total discrição, proporcionando um ambiente de tranquilidade e bem-estar. Seja para aliviar o estresse do dia a dia, relaxar os músculos ou desfrutar de um momento de puro prazer, você encontrará a massagem ideal para suas necessidades. Todos os perfis são verificados e permitem contato direto via WhatsApp, garantindo que você possa agendar seu horário com facilidade e segurança. Explore as opções disponíveis em diversos bairros de Macapá e encontre a massagista perfeita para sua sessão de relaxamento.`, 
     filterFn: (p) => p.categoria === "Massagem",
     relatedLinks: [
       { to: "/acompanhantes-macapa", label: "Acompanhantes em Macapá" },
@@ -130,7 +136,8 @@ export const seoPages: Record<string, SEOPageConfig> = {
     h1: "Acompanhantes de Luxo em Macapá – AP",
     h2: "Perfis Premium e de Luxo em Macapá, Amapá",
     metaDescription: "Acompanhantes de luxo em Macapá, AP. Perfis sofisticados e verificados no Gatinhas Club.",
-    content: "Encontre acompanhantes de luxo em Macapá, AP. Perfis sofisticados, com fotos verificadas e disponíveis para eventos, jantares e companhia exclusiva na capital do Amapá.",
+    content: `Encontre acompanhantes de luxo em Macapá, AP, no Gatinhas Club. Nossa plataforma reúne perfis sofisticados e verificados, ideais para quem busca uma companhia exclusiva e de alto padrão na capital do Amapá.`, 
+    extraContent: `As acompanhantes de luxo disponíveis no Gatinhas Club são selecionadas para oferecer uma experiência diferenciada, seja para eventos sociais, jantares de negócios, viagens ou momentos íntimos. Com discrição e elegância, elas proporcionam um atendimento personalizado e inesquecível. Todos os perfis são cuidadosamente verificados, garantindo fotos 100% reais e informações precisas. Entre em contato direto via WhatsApp com a acompanhante de sua preferência e desfrute de momentos de requinte e exclusividade em Macapá.`, 
     filterFn: (p) => p.categoria === "Luxo",
     relatedLinks: [
       { to: "/acompanhantes-macapa", label: "Acompanhantes em Macapá" },
@@ -172,7 +179,7 @@ const SEOPage = () => {
         title={config.title}
         description={config.metaDescription}
         canonical={`/${config.slug}`}
-        keywords={`${config.h1}, acompanh antes macapá, classificados adultos, ${config.slug.replace(/-/g, ' ')}`}
+        keywords={`${config.h1}, acompanhantes macapá, classificados adultos, ${config.slug.replace(/-/g, ' ')}`}
         ogImageAlt={config.h1}
       />
 
@@ -197,13 +204,13 @@ const SEOPage = () => {
               "@type": "ListItem",
               "position": 1,
               "name": "Início",
-              "item": "https://gatinhasclub.com.br"
+              "item": "https://www.gatinhasclub.site"
             },
             {
               "@type": "ListItem",
               "position": 2,
               "name": config.h1,
-              "item": `https://gatinhasclub.com.br/${config.slug}`
+              "item": `https://www.gatinhasclub.site/${config.slug}`
             }
           ]
         })}

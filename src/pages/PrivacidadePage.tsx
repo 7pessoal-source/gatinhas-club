@@ -26,7 +26,7 @@ const PrivacidadePage = () => {
               O controlador dos dados pessoais tratados nesta Plataforma é o{" "}
               <strong className="text-foreground">Gatinhas Club</strong>, com sede em Macapá – AP,
               Brasil. Contato do Encarregado (DPO):{" "}
-              <strong className="text-foreground">privacidade@gatinhasclub.com.br</strong>
+              <strong className="text-foreground">privacidade@gatinhasclub.site</strong>
             </p>
           </section>
 
@@ -107,7 +107,7 @@ const PrivacidadePage = () => {
             </ul>
             <p className="mt-2">
               Para exercer seus direitos, envie solicitação para:{" "}
-              <strong className="text-foreground">privacidade@gatinhasclub.com.br</strong>. Responderemos em até 15 dias úteis.
+              <strong className="text-foreground">privacidade@gatinhasclub.site</strong>. Responderemos em até 15 dias úteis.
             </p>
           </section>
 

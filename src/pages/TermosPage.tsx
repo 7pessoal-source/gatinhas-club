@@ -183,7 +183,7 @@ const TermosPage = () => {
             <h2 className="mb-2 font-display text-lg font-semibold text-foreground">11. Contato</h2>
             <p>
               Para questões relacionadas a estes Termos, envie e-mail para:{" "}
-              <strong className="text-foreground">contato@gatinhasclub.com.br</strong>
+              <strong className="text-foreground">contato@gatinhasclub.site</strong>
             </p>
           </section>
         </div>

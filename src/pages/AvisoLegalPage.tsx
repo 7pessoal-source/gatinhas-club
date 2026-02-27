@@ -56,7 +56,7 @@ const AvisoLegalPage = () => {
             </ul>
             <p className="mt-2">
               Denúncias sobre conteúdos suspeitos devem ser enviadas imediatamente para:{" "}
-              <strong className="text-foreground">denuncias@gatinhasclub.com.br</strong> ou pelo
+              <strong className="text-foreground">denuncias@gatinhasclub.site</strong> ou pelo
               Disque Denúncia Nacional: <strong className="text-foreground">100</strong>.
             </p>
           </section>
@@ -80,7 +80,7 @@ const AvisoLegalPage = () => {
             <p>
               Requisições legais, ordens judiciais e solicitações de autoridades devem ser
               encaminhadas para:{" "}
-              <strong className="text-foreground">juridico@gatinhasclub.com.br</strong>. Respondemos
+              <strong className="text-foreground">juridico@gatinhasclub.site</strong>. Respondemos
               a todas as solicitações dentro dos prazos legais.
             </p>
           </section>

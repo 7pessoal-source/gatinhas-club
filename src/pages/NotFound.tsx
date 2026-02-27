@@ -75,7 +75,7 @@ const NotFound = () => {
             size="lg"
             className="gap-2"
           >
-            <a href="mailto:contato@gatinhasclub.com.br">
+            <a href="mailto:contato@gatinhasclub.site">
               <Mail className="w-5 h-5" />
               Reportar Erro
             </a>
@@ -132,10 +132,10 @@ const NotFound = () => {
           <p className="text-sm text-foreground">
             Precisa de ajuda? Entre em contato conosco através do email{" "}
             <a
-              href="mailto:contato@gatinhasclub.com.br"
+              href="mailto:contato@gatinhasclub.site"
               className="text-primary font-semibold hover:underline"
             >
-              contato@gatinhasclub.com.br
+              contato@gatinhasclub.site
             </a>
           </p>
         </div>

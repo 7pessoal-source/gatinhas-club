@@ -32,7 +32,7 @@ const SEOHead = ({
   const fullTitle = title.includes("Gatinhas Club")
     ? title
     : `${title} | Gatinhas Club – Macapá AP`;
-  const siteUrl = "https://www.gatinhasclub.site";
+  const siteUrl = import.meta.env.VITE_SITE_URL || "https://www.gatinhasclub.site";
   const canonicalUrl = canonical ? `${siteUrl}${canonical}` : undefined;
   const defaultOg = `${siteUrl}/og-image.jpg`;
   const ogImageUrl = ogImage || defaultOg;

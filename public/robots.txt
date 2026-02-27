@@ -1,20 +1,15 @@
 # Gatinhas Club - robots.txt
-# Otimizado para SEO e rastreamento eficiente
+# www.gatinhasclub.site
 
 User-agent: *
 Allow: /
-Allow: /acompanhantes-*
-Allow: /garotas-de-programa-*
-Allow: /massagem-*
-Allow: /perfil/*
+
+# Bloquear áreas privadas
 Disallow: /admin
 Disallow: /painel
 Disallow: /auth
 Disallow: /cadastro-gp
 Disallow: /api/
-Disallow: /*.json$
-Disallow: /*?*
-Disallow: /*#*
 
 # Permitir rastreamento de assets
 Allow: /*.css$
@@ -22,8 +17,9 @@ Allow: /*.js$
 Allow: /*.webp$
 Allow: /*.jpg$
 Allow: /*.png$
+Allow: /*.svg$
 
-# Google
+# Google - rastreamento máximo
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
